@@ -1,0 +1,10 @@
+1. Выведите на экран любое сообщение
+```golang
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello World")
+}
+```
