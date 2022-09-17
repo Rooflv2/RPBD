@@ -76,22 +76,21 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
 func main() {
 	var x int
 
 	fmt.Print("Enter x: ")
-	fmt.Fscan(os.Stdin, &x)
-	switch {
-	case x == 5:
+	fmt.Scanln(&x)
+	switch x {
+	case 5:
 		fmt.Printf("Отлично")
-	case x == 4:
+	case 4:
 		fmt.Printf("Хорошо")
-	case x == 3:
+	case 3:
 		fmt.Printf("Удовлетворительно")
-	case x == 2:
+	case 2:
 		fmt.Printf("Не удовлетворительно")
 	default:
 		fmt.Printf("Такой оценки не существует!")
