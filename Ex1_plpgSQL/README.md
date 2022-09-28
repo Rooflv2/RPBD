@@ -1,5 +1,5 @@
 1. Выведите на экран любое сообщение
-```plpgSQL
+```plpgsql
 CREATE TABLE table
 ```
 
