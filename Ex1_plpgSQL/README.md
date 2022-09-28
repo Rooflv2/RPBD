@@ -1,12 +1,6 @@
 1. Выведите на экран любое сообщение
-```golang
-package main
-
-import "fmt"
-
-func main() {
-	fmt.Println("Hello World")
-}
+```plpgsql
+CREATE
 ```
 
 2. Выведите на экран текущую дату
