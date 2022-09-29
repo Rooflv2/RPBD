@@ -1,7 +1,6 @@
 1. Выведите на экран любое сообщение
 ```plpgsql
-SELECT *
-FROM people
+SELECT 'LOL'
 ```
 
 2. Выведите на экран текущую дату
@@ -15,18 +14,44 @@ SELECT CURRENT_TIME
 
 3. Создайте две числовые переменные и присвойте им значение. Выполните математические действия с этими числами и выведите результат на экран.
 ```plpgsql
-
+CREATE OR REPLACE FUNCTION math(x int, y int) RETURNS int AS $$
+BEGIN
+    RETURN x + y;
+END
+$$ LANGUAGE plpgsql
 ```
 4. Написать программу двумя способами 1 - использование IF, 2 - использование CASE. Объявите числовую переменную и присвоейте ей значение. Если число равно 5 - выведите на экран "Отлично". 4 - "Хорошо". 3 - Удовлетворительно". 2 - "Неуд". В остальных случаях выведите на экран сообщение, что введённая оценка не верна.
 
-Вариант решения через конструкцию if, else if и else:
+Вариант решения через конструкцию if:
 ```plpgsql
-
+CREATE OR REPLACE FUNCTION num_if(x int) RETURNS char AS $$
+BEGIN
+    IF (x = 5) THEN RETURN 'Отлично';
+	  ELSIF (x = 4) THEN RETURN 'Хорошо';
+	  ELSIF (x = 3) THEN RETURN 'Удовлетворительно';
+	  ELSIF (x = 2) THEN RETURN 'Не удовлетворительно';
+	  ELSE RETURN 'Введите число от 2 до 5';
+	  END IF;
+END
+$$ LANGUAGE plpgsql
 ```
 
 Вариант решения черещ конструкцию switch case:
 ```plpgsql
-
+CREATE OR REPLACE FUNCTION num_if(x int) RETURNS char AS $$
+BEGIN
+    CASE WHEN x = 5 THEN RETURN 'Отлично';
+	WHEN x = 4 THEN RETURN 'Хорошо';
+	WHEN x = 3 THEN RETURN 'Удовлетворительно';
+	WHEN x = 2 THEN RETURN 'Не удовлетворительно';
+	ELSE RETURN 'Введите число от 2 до 5';
+	END CASE;
+END
+$$ LANGUAGE plpgsql
+```
+Запуск функции осуществялется при помощи следующего запроса
+```plpgsql
+SELECT num_if(5);
 ```
 5. Выведите все квадраты чисел от 20 до 30 3-мя разными способами (LOOP, WHILE, FOR).
 ```plpgsql
