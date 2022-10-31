@@ -261,10 +261,30 @@ END
 $$ LANGUAGE plpgsql
 ```
 
-<h3>12. Измените схему БД так, чтобы в БД можно было хранить родственные связи между людьми. Код должен быть представлен в виде транзакции (Например (добавление атрибута): BEGIN; ALTER TABLE people ADD COLUMN leg_size REAL; COMMIT;). Дополните БД данными.</h3>
+<h3>12. Измените схему БД так, чтобы в БД можно было хранить родственные связи между людьми. Код должен быть представлен в виде транзакции (Например (добавление атрибута): BEGIN; ALTER TABLE people ADD COLUMN leg_size REAL; COMMIT;). Дополните БД данными.</h3>  
+
+Создаём таблицу  
 
 ```plpgsql
 
+CREATE TABLE "links" (
+	"id" integer primary key,
+	"people_id" INTEGER NOT NULL,
+	"people_id_2" INTEGER NOT NULL, 
+	"link" VARCHAR,
+	FOREIGN KEY ("people_id") REFERENCES "people" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION,
+	FOREIGN KEY ("people_id_2") REFERENCES "people" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION
+	);
+```
+И добавляем данные при помощи транзакции  
+
+```plpgsql
+
+BEGIN;
+	INSERT INTO links (id, people_id, people_id_2, link)
+	VALUES  (1, 2, 6, 'брат'),
+			(2, 4, 5, 'сестра');
+COMMIT;
 ```
 
 <h3>13. Напишите процедуру, которая позволяет создать в БД нового человека с указанным родством.</h3>
