@@ -266,7 +266,6 @@ $$ LANGUAGE plpgsql
 Создаём таблицу  
 
 ```plpgsql
-
 CREATE TABLE "links" (
 	"id" integer primary key,
 	"people_id" INTEGER NOT NULL,
@@ -279,7 +278,6 @@ CREATE TABLE "links" (
 И добавляем данные при помощи транзакции  
 
 ```plpgsql
-
 BEGIN;
 	INSERT INTO links (id, people_id, people_id_2, link)
 	VALUES  (1, 2, 6, 'брат'),
