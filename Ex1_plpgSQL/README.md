@@ -288,7 +288,27 @@ COMMIT;
 <h3>13. Напишите процедуру, которая позволяет создать в БД нового человека с указанным родством.</h3>
 
 ```plpgsql
+CREATE OR REPLACE PROCEDURE add_people_by_link(id_people int, name_people varchar, id_people_2 int, name_people_2 varchar, name_link varchar)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+BEGIN
+INSERT INTO people (id, name)
+VALUES (id_people, name_people);
+IF NOT EXISTS (SELECT * FROM people WHERE id = id_people_2) THEN
+INSERT INTO people (id, name)
+VALUES (id_people_2, name_people_2);
+END IF;
+INSERT INTO links (people_id, people_id_2, link)
+VALUES (id_people, id_people_2, name_link); 
+END;
+$$
+```
 
+И вызываем функцию при помощи оператора CALL
+
+```plpgsql
+CALL add_people_by_link(9, 'makar', 7, 'roma', 'брат')
 ```
 
 <h3>14. Измените схему БД так, чтобы в БД можно было хранить время актуальности данных человека (выполнить также, как п.12).</h3>
