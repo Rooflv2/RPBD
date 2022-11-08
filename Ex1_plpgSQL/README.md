@@ -331,6 +331,8 @@ END;
 $$ LANGUAGE plpgsql
 ```
 
+И вызываем функцию при помощи оператора CALL
+
 ```plpgsql
 CALL update_grw_and_wght_by_id(8, 170.6, 45.1)
 ```
