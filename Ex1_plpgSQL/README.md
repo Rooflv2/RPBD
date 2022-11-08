@@ -312,13 +312,25 @@ CALL add_people_by_link(9, 'makar', 7, 'roma', 'брат')
 ```
 
 <h3>14. Измените схему БД так, чтобы в БД можно было хранить время актуальности данных человека (выполнить также, как п.12).</h3>
+  
+Для этого создаём дополнительный столбец для хранения даты изменения данных
 
 ```plpgsql
-
+ALTER TABLE people ADD COLUMN update_date date default now()
 ```
 
 <h3>15. Напишите процедуру, которая позволяет актуализировать рост и вес человека.</h3>
 
 ```plpgsql
+CREATE OR REPLACE PROCEDURE update_grw_and_wght_by_id(id_p int, new_growth numeric, new_weight numeric) AS $$
+BEGIN
+	UPDATE people SET growth = new_growth WHERE id = id_p;
+	UPDATE people SET weight = new_weight WHERE id = id_p;
+	UPDATE people SET update_date = now() WHERE id = id_p;
+END;
+$$ LANGUAGE plpgsql
+```
 
+```plpgsql
+CALL update_grw_and_wght_by_id(8, 170.6, 45.1)
 ```
