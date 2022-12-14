@@ -334,5 +334,5 @@ $$ LANGUAGE plpgsql
 И вызываем функцию при помощи оператора CALL
 
 ```plpgsql
-CALL update_grw_and_wght_by_id(8, 170.6, 45.1)
+CALL update_grw_and_wght_by_id(8, 171.6, 46.1)
 ```
