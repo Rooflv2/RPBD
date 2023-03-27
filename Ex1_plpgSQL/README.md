@@ -1,7 +1,7 @@
 <h3> 1. Выведите на экран любое сообщение </h3>
 
 ```plpgsql
-SELECT 'LOL'
+SELECT 'LUL'
 ```
 <h3> 2. Выведите на экран текущую дату </h3>
 
@@ -334,5 +334,5 @@ $$ LANGUAGE plpgsql
 И вызываем функцию при помощи оператора CALL
 
 ```plpgsql
-CALL update_grw_and_wght_by_id(8, 170.7, 45.1)
+CALL update_grw_and_wght_by_id(8, 170.6, 45.1)
 ```
